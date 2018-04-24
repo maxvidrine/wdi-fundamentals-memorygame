@@ -22,7 +22,16 @@ let cards = [
     }
 ]
 
-let checkForMatch = function() {
+let flipCard = function() {
+    var cardId = this.getAttribute("data-id");
+    console.log("User flipped " + cards[cardId].rank);
+    console.log(cards[cardId].cardImage);
+    console.log(cards[cardId].suit);
+    cardsInPlay.push(cards[cardId].rank);
+
+    /*checkForMatch has been dropped into flipCard below
+    to give it access to local variables
+    without having to pass them as arguments*/
     this.setAttribute("src", cards[cardId].cardImage);
     if (cardsInPlay.length === 2) {
         if (cardsInPlay[0] === cardsInPlay[1]) {
@@ -31,16 +40,7 @@ let checkForMatch = function() {
         else {
             alert("Sorry, try again.");
         }
-    }
-}
-
-let flipCard = function() {
-    var cardId = this.getAttribute("data-id");
-    console.log("User flipped " + cards[cardId].rank);
-    console.log(cards[cardId].cardImage);
-    console.log(cards[cardId].suit);
-    cardsInPlay.push(cards[cardId].rank);
-    checkForMatch();
+    } 
 }
 
 let createBoard = function () {
